@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { HeaderBar } from '../components';
+import { HeaderBar, CustomButton } from '../components';
 import {
 	constants,
 	icons,
@@ -215,6 +215,7 @@ const Home = ({ navigation, appTheme }) => {
 								</Text>
 
 								{/* Button */}
+								<CustomButton label='Order Now' isPrimaryButton={true} containerStyle={{marginTop: 10, paddingHorizontal: SIZES.padding, paddingVertical: SIZES.base, borderRadius: SIZES.radius * 2}} labelStyle={{...FONTS.h3}} onPress={() => navigation.navigate('Location')} />
 							</View>
 						);
 					}}

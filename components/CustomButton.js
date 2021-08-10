@@ -1,2 +1,38 @@
 import React from 'react';
-import {}
+import { TouchableOpacity, View, Text } from 'react-native';
+import { COLORS } from '../constants';
+
+const CustomButton = ({
+	containerStyle,
+	labelStyle,
+	label,
+	onPress,
+	isPrimaryButton,
+	isSecondaryButton,
+}) => {
+	return (
+		<TouchableOpacity
+			style={{
+				alignItems: 'center',
+				justifyContent: 'center',
+				backgroundColor: isPrimaryButton ? COLORS.primary : COLORS.transparent,
+				borderColor: isSecondaryButton ? COLORS.primary : COLORS.transparent,
+				borderWidth: isSecondaryButton ? 1 : 0,
+				...containerStyle,
+			}}
+			onPress={onPress}
+			>
+			<View
+				style={{
+					color: isPrimaryButton ? COLORS.white : COLORS.primary,
+					...labelStyle,
+				}}>
+				<Text>
+				{label}
+				</Text>
+			</View>
+		</TouchableOpacity>
+	);
+};
+
+export default CustomButton;
