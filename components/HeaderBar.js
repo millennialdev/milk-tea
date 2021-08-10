@@ -7,10 +7,19 @@ import {
 	Text,
 	StyleSheet,
 } from 'react-native';
-
+import { connect } from 'react-redux';
+import { toggleTheme } from '../stores/themeActions';
 import { SIZES, COLORS, FONTS, icons } from '../constants';
 
-const HeaderBar = () => {
+const HeaderBar = ({ appTheme, toggleTheme }) => {
+	function toggleThemeHandler() {
+		if (appTheme.name == 'light') {
+			toggleTheme('dark');
+		} else {
+			toggleTheme('light');
+		}
+	}
+
 	return (
 		<SafeAreaView
 			style={{
@@ -35,7 +44,9 @@ const HeaderBar = () => {
 					height: 40,
 					borderRadius: 20,
 					backgroundColor: COLORS.lightPurple,
-				}}>
+				}}
+				onPress={() => toggleThemeHandler()}>
+
 				{/* Sun */}
 				<View
 					style={{
@@ -43,6 +54,7 @@ const HeaderBar = () => {
 						height: 40,
 						alignItems: 'center',
 						justifyContent: 'center',
+						...(appTheme.name == 'light') ? styles.selectedLightModeStyle : {}
 					}}>
 					<Image
 						source={icons.sunny}
@@ -57,7 +69,7 @@ const HeaderBar = () => {
 						height: 40,
 						alignItems: 'center',
 						justifyContent: 'center',
-						...styles.selectedNightModeStyle,
+						...(appTheme.name == 'dark') ? styles.selectedNightModeStyle : {}
 					}}>
 					<Image
 						source={icons.night}
@@ -80,4 +92,19 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default HeaderBar;
+function mapStateToProps(state) {
+	return {
+		appTheme: state.appTheme,
+		error: state.error,
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		toggleTheme: (themeType) => {
+			return dispatch(toggleTheme(themeType));
+		},
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderBar);
