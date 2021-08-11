@@ -20,15 +20,14 @@ const CustomButton = ({
 				borderWidth: isSecondaryButton ? 1 : 0,
 				...containerStyle,
 			}}
-			onPress={onPress}
-			>
-			<View
-				style={{
-					color: isPrimaryButton ? COLORS.white : COLORS.primary,
-					...labelStyle,
-				}}>
-				<Text>
-				{label}
+			onPress={onPress}>
+			<View>
+				<Text
+					style={{
+						color: isPrimaryButton ? COLORS.white : COLORS.primary,
+						...labelStyle,
+					}}>
+					{label}
 				</Text>
 			</View>
 		</TouchableOpacity>

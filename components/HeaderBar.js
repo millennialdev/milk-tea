@@ -26,15 +26,16 @@ const HeaderBar = ({ appTheme, toggleTheme }) => {
 			<StatusBar backgroundColor={COLORS.purple} barStyle='light-content' />
 			<SafeAreaView
 				style={{
-					height: '11%',
+					height: '13.5%',
 					width: '100%',
 					backgroundColor: COLORS.purple,
 					flexDirection: 'row',
 				}}>
 				{/* Greetings */}
 				<View style={{ flex: 1, paddingLeft: SIZES.padding }}>
+					<Text style={{ color: COLORS.white, ...FONTS.h2 }}>Wendy,</Text>
 					<Text style={{ color: COLORS.white, ...FONTS.h2 }}>
-						Wendy, Welcome Back!
+						Welcome Back!
 					</Text>
 					{/* <Text style={{ color: COLORS.white, ...FONTS.h2 }}>
 						Welcome Back!

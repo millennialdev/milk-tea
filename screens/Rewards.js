@@ -11,6 +11,7 @@ import { HeaderBar, CustomButton } from '../components';
 import { dummyData, COLORS, FONTS, SIZES, icons } from '../constants';
 
 import { connect } from 'react-redux';
+import { availableRewards } from '../constants/dummy';
 
 const Rewards = ({ navigation, appTheme }) => {
 	function renderRewardPointSection() {
@@ -60,6 +61,60 @@ const Rewards = ({ navigation, appTheme }) => {
 		);
 	}
 
+	function renderButtons() {
+		return (
+			<View
+				style={{
+					flexDirection: 'row',
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}>
+				{/* Scan */}
+				<CustomButton
+					isPrimaryButton={true}
+					label='Scan in store'
+					containerStyle={{
+						width: 130,
+						paddingVertical: 5,
+						marginRight: SIZES.radius,
+						borderRadius: SIZES.radius * 2,
+						color: 'white',
+					}}
+					labelStyle={{ ...FONTS.h3 }}
+					onPress={() => navigation.navigate('Location')}
+				/>
+
+				{/* Redeem */}
+				<CustomButton
+					isSecondaryButton={true}
+					label='Redeem'
+					containerStyle={{
+						width: 130,
+						paddingVertical: 5,
+						borderRadius: SIZES.radius * 2,
+					}}
+					labelStyle={{ ...FONTS.h3 }}
+					onPress={() => navigation.navigate('Location')}
+				/>
+			</View>
+		);
+	}
+
+	function renderAvailableRewardsHeader() {
+		return (
+			<View
+				style={{
+					marginTop: SIZES.padding,
+					marginBottom: SIZES.radius,
+					paddingHorizontal: SIZES.padding,
+				}}>
+				<Text style={{ color: appTheme.textColor, ...FONTS.h2 }}>
+					Available Rewards
+				</Text>
+			</View>
+		);
+	}
+
 	return (
 		<View style={styles.container}>
 			{/* Header */}
@@ -82,8 +137,10 @@ const Rewards = ({ navigation, appTheme }) => {
 						{renderRewardPointSection()}
 
 						{/* Buttons */}
+						{renderButtons()}
 
 						{/* Header Label */}
+						{renderAvailableRewardsHeader()}
 					</View>
 				}
 				renderItem={({ item }) => {
@@ -107,7 +164,9 @@ const Rewards = ({ navigation, appTheme }) => {
 							</Text>
 						</View>
 					);
-				}}></FlatList>
+				}}
+				ListFooterComponent={<View style={{ marginBottom: 120 }} />}
+			/>
 		</View>
 	);
 };
