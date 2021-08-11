@@ -10,13 +10,16 @@ import {
 	SafeAreaView,
 } from 'react-native';
 
+import Svg, { Circle } from 'react-native-svg';
+
 import { dummyData, FONTS, COLORS, SIZES, icons } from '../constants';
-import { IconButton, TabButton } from '../components';
+import { IconButton, TabButton, VerticalTextButton } from '../components';
 import { connect } from 'react-redux';
 
 const Order = ({ navigation, route, appTheme }) => {
 	const [selectedLocation, setSelectedLocation] = useState(null);
 	const [selectedTab, setSelectedTab] = useState(0);
+	const [selectedCategory, setSelectedCategory] = useState('Milk Tea');
 
 	useEffect(() => {
 		let { selectedLocation } = route.params;
@@ -27,7 +30,7 @@ const Order = ({ navigation, route, appTheme }) => {
 		return (
 			<SafeAreaView
 				style={{
-					height: 200,
+					height: 147,
 					backgroundColor: COLORS.primary,
 					alignItems: 'center',
 				}}>
@@ -102,6 +105,69 @@ const Order = ({ navigation, route, appTheme }) => {
 				</View>
 
 				{/* Order Number */}
+				<View
+					style={{
+						width: 35,
+						height: 35,
+						borderRadius: 10,
+						alignItems: 'center',
+						justifyContent: 'center',
+						backgroundColor: COLORS.primary,
+					}}>
+					<Text style={{ color: COLORS.white, ...FONTS.h3 }}>0</Text>
+				</View>
+			</View>
+		);
+	}
+
+	function renderSideBar() {
+		return (
+			<View>
+				<Svg height='65' width='65' viewBox='0 0 65 65'>
+					<Circle cx='5' cy='60' r='60' fill={COLORS.primary} />
+				</Svg>
+				<View
+					style={{
+						marginTop: -10,
+						width: 65,
+						backgroundColor: COLORS.primary,
+						alignItems: 'center',
+						justifyContent: 'center',
+						zIndex: 1,
+					}}>
+					<VerticalTextButton
+						label='Snack'
+						selected={selectedCategory == 'Snack'}
+						onPress={() => setSelectedCategory('Snack')}
+					/>
+					<VerticalTextButton
+						label='Coffee'
+						containerStyle={{ marginTop: 50 }}
+						selected={selectedCategory == 'Coffee'}
+						onPress={() => setSelectedCategory('Coffee')}
+					/>
+					<VerticalTextButton
+						label='Smoothie'
+						containerStyle={{ marginTop: 70, width: 100 }}
+						selected={selectedCategory == 'Smoothie'}
+						onPress={() => setSelectedCategory('Smoothie')}
+					/>
+					<VerticalTextButton
+						label='Specialtea'
+						containerStyle={{ marginTop: 90, width: 100 }}
+						selected={selectedCategory == 'Specialtea'}
+						onPress={() => setSelectedCategory('Specialtea')}
+					/>
+					<VerticalTextButton
+						label='Milk Tea'
+						containerStyle={{ marginTop: 80, width: 80 }}
+						selected={selectedCategory == 'Milk Tea'}
+						onPress={() => setSelectedCategory('Milk Tea')}
+					/>
+				</View>
+				<Svg height='65' width='65' viewBox='0 0 65 65'>
+					<Circle cx='5' cy='0' r='60' fill={COLORS.primary} />
+				</Svg>
 			</View>
 		);
 	}
@@ -120,7 +186,16 @@ const Order = ({ navigation, route, appTheme }) => {
 					borderTopLeftRadius: 40,
 					borderTopRightRadius: 40,
 				}}>
+				{/* Tab Bar */}
 				{renderTopTabBarSection()}
+
+				{/* Side Bar & Listing */}
+				<View style={{ flex: 1, flexDirection: 'row' }}>
+					{/* Side Bar */}
+					{renderSideBar()}
+
+					{/* Listing */}
+				</View>
 			</View>
 		</View>
 	);
