@@ -14,6 +14,7 @@ import {
 	ImageBackground,
 	Animated,
 	Image,
+	StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { HeaderBar, CustomButton } from '../components';
@@ -305,6 +306,7 @@ const Home = ({ navigation, appTheme }) => {
 
 	return (
 		<View style={styles.container}>
+			<StatusBar backgroundColor={COLORS.purple} barStyle='light-content' />
 			<HeaderBar />
 
 			<ScrollView

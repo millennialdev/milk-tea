@@ -5,6 +5,7 @@ import {
 	FlatList,
 	ImageBackground,
 	StyleSheet,
+	StatusBar,
 } from 'react-native';
 
 import { HeaderBar, CustomButton } from '../components';
@@ -16,48 +17,51 @@ import { availableRewards } from '../constants/dummy';
 const Rewards = ({ navigation, appTheme }) => {
 	function renderRewardPointSection() {
 		return (
-			<View style={{ alignItems: 'center', marginVertical: SIZES.padding }}>
-				{/* Text */}
-				<Text style={{ color: COLORS.primary, ...FONTS.h1, fontSize: 35 }}>
-					Rewards
-				</Text>
+			<>
+				<StatusBar backgroundColor={COLORS.purple} barStyle='light-content' />
+				<View style={{ alignItems: 'center', marginVertical: SIZES.padding }}>
+					{/* Text */}
+					<Text style={{ color: COLORS.primary, ...FONTS.h1, fontSize: 35 }}>
+						Rewards
+					</Text>
 
-				<Text
-					style={{
-						marginTop: 10,
-						color: appTheme.textColor,
-						width: SIZES.width * 0.6,
-						textAlign: 'center',
-						...FONTS.h3,
-						lineHeight: 18,
-					}}>
-					You are 60 points away from your next reward
-				</Text>
-
-				{/* Image */}
-				<ImageBackground
-					source={icons.reward_cup}
-					resizeMode='contain'
-					style={{
-						marginTop: SIZES.padding,
-						width: SIZES.width * 0.8,
-						height: SIZES.width * 0.9,
-						alignItems: 'center',
-						justifyContent: 'center',
-					}}>
-					<View
+					<Text
 						style={{
-							width: 70,
-							height: 70,
-							borderRadius: 35,
+							marginTop: 10,
+							color: appTheme.textColor,
+							width: SIZES.width * 0.6,
+							textAlign: 'center',
+							...FONTS.h3,
+							lineHeight: 18,
+						}}>
+						You are 60 points away from your next reward
+					</Text>
+
+					{/* Image */}
+					<ImageBackground
+						source={icons.reward_cup}
+						resizeMode='contain'
+						style={{
+							marginTop: SIZES.padding,
+							width: SIZES.width * 0.8,
+							height: SIZES.width * 0.9,
 							alignItems: 'center',
 							justifyContent: 'center',
-							backgroundColor: COLORS.white,
 						}}>
-						<Text style={{ ...FONTS.h1 }}>280</Text>
-					</View>
-				</ImageBackground>
-			</View>
+						<View
+							style={{
+								width: 70,
+								height: 70,
+								borderRadius: 35,
+								alignItems: 'center',
+								justifyContent: 'center',
+								backgroundColor: COLORS.white,
+							}}>
+							<Text style={{ ...FONTS.h1 }}>280</Text>
+						</View>
+					</ImageBackground>
+				</View>
+			</>
 		);
 	}
 
