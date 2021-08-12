@@ -1,24 +1,30 @@
 import React from 'react';
 import {
-    View,
-    Text,
-    StyleSheet
+	View,
+	Text,
+	StyleSheet,
+	Image,
+	TouchableOpacity,
+	ImageBackground,
+	ScrollView,
 } from 'react-native';
+import { dummyData, COLORS, FONTS, SIZES, icons } from '../constants';
+import { IconButton } from '../components';
+import { connect } from 'react-redux';
 
 const OrderDetail = () => {
-    return (
-        <View style={styles.container}>
-            <Text>OrderDetail</Text>
-        </View>
-    )
+	return <View></View>;
+};
+
+function mapStateToProps(state) {
+	return {
+		appTheme: state.appTheme,
+		error: state.error,
+	};
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-})
+function mapDispatchToProps(dispatch) {
+	return {};
+}
 
-export default OrderDetail;
+export default connect(mapStateToProps, mapDispatchToProps)(OrderDetail);

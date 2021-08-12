@@ -292,6 +292,7 @@ const Home = ({ navigation, appTheme }) => {
 										paddingHorizontal: SIZES.padding,
 										paddingVertical: SIZES.base,
 										borderRadius: SIZES.radius * 2,
+										backgroundColor: COLORS.lightPurple,
 									}}
 									labelStyle={{ ...FONTS.h3 }}
 									onPress={() => navigation.navigate('Location')}
