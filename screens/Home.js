@@ -250,6 +250,7 @@ const Home = ({ navigation, appTheme }) => {
 									alignItems: 'center',
 									width: SIZES.width,
 									paddingTop: SIZES.paddingCustom,
+									marginTop: -10,
 								}}>
 								{/* Image */}
 								<Image
@@ -310,10 +311,10 @@ const Home = ({ navigation, appTheme }) => {
 			<StatusBar backgroundColor={COLORS.purple} barStyle='light-content' />
 			<HeaderBar />
 
-			<ScrollView
+			<View
 				style={{
 					flex: 1,
-					marginTop: -25,
+					marginTop: '-10%',
 					borderTopLeftRadius: SIZES.radius * 2,
 					borderTopRightRadius: SIZES.radius * 2,
 					backgroundColor: appTheme.backgroundColor,
@@ -326,7 +327,7 @@ const Home = ({ navigation, appTheme }) => {
 
 				{/* Promo */}
 				{renderPromoDeals()}
-			</ScrollView>
+			</View>
 		</View>
 	);
 };
