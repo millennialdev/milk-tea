@@ -20,11 +20,19 @@ const Order = ({ navigation, route, appTheme }) => {
 	const [selectedLocation, setSelectedLocation] = useState(null);
 	const [selectedTab, setSelectedTab] = useState(0);
 	const [selectedCategory, setSelectedCategory] = useState('Milk Tea');
+	const [menu, setMenu] = useState(null);
 
 	useEffect(() => {
 		let { selectedLocation } = route.params;
 		setSelectedLocation(selectedLocation);
-	});
+	}, []);
+
+	useEffect(() => {
+		let menuList = dummyData.menuList.filter(
+			(menuItem) => menuItem.category == selectedCategory
+		);
+		setMenu(menuList);
+	}, [selectedCategory]);
 
 	function renderHeaderSection() {
 		return (
@@ -195,6 +203,83 @@ const Order = ({ navigation, route, appTheme }) => {
 					{renderSideBar()}
 
 					{/* Listing */}
+					<FlatList
+						contentContainerStyle={{
+							marginTop: SIZES.padding,
+							paddingBottom: 50,
+						}}
+						data={menu}
+						keyExtractor={(item) => item.id}
+						renderItem={({ item, index }) => {
+							return (
+								<TouchableWithoutFeedback
+									onPress={() =>
+										navigation.navigate('OrderDetail', { selectedItem: item })
+									}>
+									<View
+										style={{
+											height: 150,
+											paddingHorizontal: SIZES.padding,
+											marginTop: index > 0 ? SIZES.padding : 0,
+											alignItems: 'flex-end',
+											justifyContent: 'flex-end',
+										}}>
+										{/* Thumbnail */}
+										<View
+											style={{
+												position: 'absolute',
+												top: 0,
+												left: SIZES.padding,
+												width: 130,
+												height: 140,
+												alignItems: 'center',
+												justifyContent: 'center',
+												borderRadius: SIZES.radius,
+												backgroundColor: COLORS.lightYellow,
+												zIndex: 1,
+											}}>
+											<Image
+												source={item.thumbnail}
+												resizeMode='contain'
+												style={{ width: 100, height: 100 }}
+											/>
+										</View>
+
+										{/* Details */}
+										<View
+											style={{
+												width: '70%',
+												height: '85%',
+												paddingLeft: '22%',
+												paddingRight: SIZES.base,
+												paddingVertical: SIZES.base,
+												borderRadius: SIZES.radius,
+												justifyContent: 'space-between',
+												backgroundColor: COLORS.primary,
+											}}>
+											<Text
+												style={{
+													color: COLORS.white,
+													...FONTS.h2,
+													fontSize: 18,
+													lineHeight: 25,
+												}}>
+												{item.name}
+											</Text>
+
+											<Text
+												style={{
+													color: COLORS.lightYellow,
+													...FONTS.h2,
+													fontSize: 18,
+												}}>
+												{item.price}
+											</Text>
+										</View>
+									</View>
+								</TouchableWithoutFeedback>
+							);
+						}}></FlatList>
 				</View>
 			</View>
 		</View>
