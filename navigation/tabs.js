@@ -12,7 +12,7 @@ import {
 } from '@react-navigation/bottom-tabs';
 import Svg, { Path } from 'react-native-svg';
 
-import { Home, Rewards } from '../screens';
+import { Home, Rewards, Location } from '../screens';
 import { COLORS, SIZES, icons } from '../constants';
 
 const Tab = createBottomTabNavigator();

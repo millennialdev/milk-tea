@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Location, Order, OrderDetail } from './screens';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 const store = createStore(themeReducer, applyMiddleware(thunk));
 
 const App = () => {
-	React.useEffect(() => {
+	useEffect(() => {
 		SplashScreen.hide();
 	}, []);
 

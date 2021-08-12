@@ -22,6 +22,7 @@ export const COLORS = {
 	lightGray: '#3B3B3B',
 	lightGray2: '#707070',
 	lightGray3: '#f0f0f0',
+	lightGray4: 'hsl(0,0%,90%)',
 
 	pink: '#D993B4',
 	lightPink: '#F3DEE8',
@@ -95,6 +96,9 @@ export const darkTheme = {
 	cardBackgroundColor: COLORS.gray3,
 	bottomTabBarBackgroundColor: COLORS.gray3,
 	headerColor: COLORS.yellow,
+	headerColorOrderDetail: COLORS.yellow,
+	secondaryColorOrderDetail: COLORS.white,
+	backgroundColorOrderDetail: COLORS.gray1,
 };
 
 export const lightTheme = {
@@ -105,6 +109,9 @@ export const lightTheme = {
 	cardBackgroundColor: COLORS.lightYellow,
 	bottomTabBarBackgroundColor: COLORS.lightYellow,
 	headerColor: COLORS.red,
+	headerColorOrderDetail: COLORS.gray1,
+	secondaryColorOrderDetail: COLORS.gray3,
+	backgroundColorOrderDetail: COLORS.lightGray4,
 };
 
 export const selectedTheme = darkTheme;

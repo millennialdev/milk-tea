@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 import {
 	View,
 	Text,
-	TouchableOpacity,
 	StyleSheet,
 	Image,
 	FlatList,
 	TouchableWithoutFeedback,
 	SafeAreaView,
+	StatusBar,
 } from 'react-native';
-
 import Svg, { Circle } from 'react-native-svg';
-
 import { dummyData, FONTS, COLORS, SIZES, icons } from '../constants';
 import { IconButton, TabButton, VerticalTextButton } from '../components';
 import { connect } from 'react-redux';
@@ -181,108 +179,111 @@ const Order = ({ navigation, route, appTheme }) => {
 	}
 
 	return (
-		<View style={styles.container}>
-			{/* Header */}
-			{renderHeaderSection()}
+		<>
+			<StatusBar backgroundColor={COLORS.primary} barStyle='light-content' />
+			<View style={styles.container}>
+				{/* Header */}
+				{renderHeaderSection()}
 
-			{/* Detail */}
-			<View
-				style={{
-					flex: 1,
-					backgroundColor: appTheme.backgroundColor,
-					marginTop: -45,
-					borderTopLeftRadius: 40,
-					borderTopRightRadius: 40,
-				}}>
-				{/* Tab Bar */}
-				{renderTopTabBarSection()}
+				{/* Detail */}
+				<View
+					style={{
+						flex: 1,
+						backgroundColor: appTheme.backgroundColor,
+						marginTop: -45,
+						borderTopLeftRadius: 40,
+						borderTopRightRadius: 40,
+					}}>
+					{/* Tab Bar */}
+					{renderTopTabBarSection()}
 
-				{/* Side Bar & Listing */}
-				<View style={{ flex: 1, flexDirection: 'row' }}>
-					{/* Side Bar */}
-					{renderSideBar()}
+					{/* Side Bar & Listing */}
+					<View style={{ flex: 1, flexDirection: 'row' }}>
+						{/* Side Bar */}
+						{renderSideBar()}
 
-					{/* Listing */}
-					<FlatList
-						contentContainerStyle={{
-							marginTop: SIZES.padding,
-							paddingBottom: 50,
-						}}
-						data={menu}
-						keyExtractor={(item) => item.id}
-						renderItem={({ item, index }) => {
-							return (
-								<TouchableWithoutFeedback
-									onPress={() =>
-										navigation.navigate('OrderDetail', { selectedItem: item })
-									}>
-									<View
-										style={{
-											height: 150,
-											paddingHorizontal: SIZES.padding,
-											marginTop: index > 0 ? SIZES.padding : 0,
-											alignItems: 'flex-end',
-											justifyContent: 'flex-end',
-										}}>
-										{/* Thumbnail */}
+						{/* Listing */}
+						<FlatList
+							contentContainerStyle={{
+								marginTop: SIZES.padding,
+								paddingBottom: 50,
+							}}
+							data={menu}
+							keyExtractor={(item) => item.id}
+							renderItem={({ item, index }) => {
+								return (
+									<TouchableWithoutFeedback
+										onPress={() =>
+											navigation.navigate('OrderDetail', { selectedItem: item })
+										}>
 										<View
 											style={{
-												position: 'absolute',
-												top: 0,
-												left: SIZES.padding,
-												width: 130,
-												height: 140,
-												alignItems: 'center',
-												justifyContent: 'center',
-												borderRadius: SIZES.radius,
-												backgroundColor: COLORS.lightYellow,
-												zIndex: 1,
+												height: 150,
+												paddingHorizontal: SIZES.padding,
+												marginTop: index > 0 ? SIZES.padding : 0,
+												alignItems: 'flex-end',
+												justifyContent: 'flex-end',
 											}}>
-											<Image
-												source={item.thumbnail}
-												resizeMode='contain'
-												style={{ width: 100, height: 100 }}
-											/>
-										</View>
-
-										{/* Details */}
-										<View
-											style={{
-												width: '70%',
-												height: '85%',
-												paddingLeft: '22%',
-												paddingRight: SIZES.base,
-												paddingVertical: SIZES.base,
-												borderRadius: SIZES.radius,
-												justifyContent: 'space-between',
-												backgroundColor: COLORS.primary,
-											}}>
-											<Text
+											{/* Thumbnail */}
+											<View
 												style={{
-													color: COLORS.white,
-													...FONTS.h2,
-													fontSize: 18,
-													lineHeight: 25,
+													position: 'absolute',
+													top: 0,
+													left: SIZES.padding,
+													width: 130,
+													height: 140,
+													alignItems: 'center',
+													justifyContent: 'center',
+													borderRadius: SIZES.radius,
+													backgroundColor: COLORS.lightYellow,
+													zIndex: 1,
 												}}>
-												{item.name}
-											</Text>
+												<Image
+													source={item.thumbnail}
+													resizeMode='contain'
+													style={{ width: 100, height: 100 }}
+												/>
+											</View>
 
-											<Text
+											{/* Details */}
+											<View
 												style={{
-													color: COLORS.lightYellow,
-													...FONTS.h2,
-													fontSize: 18,
+													width: '70%',
+													height: '85%',
+													paddingLeft: '22%',
+													paddingRight: SIZES.base,
+													paddingVertical: SIZES.base,
+													borderRadius: SIZES.radius,
+													justifyContent: 'space-between',
+													backgroundColor: COLORS.primary,
 												}}>
-												{item.price}
-											</Text>
+												<Text
+													style={{
+														color: COLORS.white,
+														...FONTS.h2,
+														fontSize: 18,
+														lineHeight: 25,
+													}}>
+													{item.name}
+												</Text>
+
+												<Text
+													style={{
+														color: COLORS.lightYellow,
+														...FONTS.h2,
+														fontSize: 18,
+													}}>
+													{item.price}
+												</Text>
+											</View>
 										</View>
-									</View>
-								</TouchableWithoutFeedback>
-							);
-						}}></FlatList>
+									</TouchableWithoutFeedback>
+								);
+							}}></FlatList>
+					</View>
 				</View>
 			</View>
-		</View>
+		</>
 	);
 };
 

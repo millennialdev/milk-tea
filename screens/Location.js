@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	View,
 	SafeAreaView,
@@ -10,13 +10,13 @@ import {
 	StyleSheet,
 	StatusBar,
 } from 'react-native';
-
 import { connect } from 'react-redux';
 import { dummyData, COLORS, SIZES, FONTS, icons } from '../constants';
 import { IconButton, TabButton } from '../components';
 
 const Location = ({ navigation, appTheme }) => {
 	const [selectedTab, setSelectedTab] = useState(0);
+	const [topBarColor, setTopBarColor] = useState(COLORS.primary);
 
 	function renderHeader() {
 		return (

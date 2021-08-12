@@ -7,14 +7,13 @@ import React, {
 } from 'react';
 import {
 	View,
+	StatusBar,
 	Text,
 	TouchableOpacity,
-	ScrollView,
 	StyleSheet,
 	ImageBackground,
 	Animated,
 	Image,
-	StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { HeaderBar, CustomButton } from '../components';
@@ -307,28 +306,29 @@ const Home = ({ navigation, appTheme }) => {
 	}
 
 	return (
-		<View style={styles.container}>
+		<>
 			<StatusBar backgroundColor={COLORS.purple} barStyle='light-content' />
-			<HeaderBar />
+			<View style={styles.container}>
+				<HeaderBar />
+				<View
+					style={{
+						flex: 1,
+						marginTop: '-10%',
+						borderTopLeftRadius: SIZES.radius * 2,
+						borderTopRightRadius: SIZES.radius * 2,
+						backgroundColor: appTheme.backgroundColor,
+					}}
+					contentContainerStyle={{
+						paddingBottom: 150,
+					}}>
+					{/* Rewards */}
+					{renderAvailableRewards()}
 
-			<View
-				style={{
-					flex: 1,
-					marginTop: '-10%',
-					borderTopLeftRadius: SIZES.radius * 2,
-					borderTopRightRadius: SIZES.radius * 2,
-					backgroundColor: appTheme.backgroundColor,
-				}}
-				contentContainerStyle={{
-					paddingBottom: 150,
-				}}>
-				{/* Rewards */}
-				{renderAvailableRewards()}
-
-				{/* Promo */}
-				{renderPromoDeals()}
+					{/* Promo */}
+					{renderPromoDeals()}
+				</View>
 			</View>
-		</View>
+		</>
 	);
 };
 
