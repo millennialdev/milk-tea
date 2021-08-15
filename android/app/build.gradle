@@ -79,6 +79,7 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
+    bundleInDebug: true // Makes sure that physical android devices get assets for the whole app, where they were showing perfectly on the emulator, but not on the physical android device.
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
